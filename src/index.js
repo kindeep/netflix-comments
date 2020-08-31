@@ -13,6 +13,7 @@ const createCommentsEl = () => {
   const el = document.createElement("div");
   el.id = COMMENTS_EL_ID;
   document.body.appendChild(el);
+  return document.getElementById(COMMENTS_EL_ID);
 };
 
 let commentsEl = document.getElementById(COMMENTS_EL_ID) ?? createCommentsEl();

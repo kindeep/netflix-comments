@@ -13,7 +13,8 @@
   "content_scripts": [
     {
       "matches": ["https://treacheryonline.web.app/*"],
-      "js": ["static/js/main.js"]
+      "js": ["static/js/bundle.js"],
+      "css": ["static/css/bundle.css"]
     }
   ],
   "permissions": [
