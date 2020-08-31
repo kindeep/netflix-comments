@@ -9,5 +9,14 @@
   "browser_action": {
       "default_icon": "logo512.png",
       "default_popup": "popup.html"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://treacheryonline.web.app/*"],
+      "js": ["static/js/main.js"]
+    }
+  ],
+  "permissions": [
+    "activeTab"
+  ]
 }

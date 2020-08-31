@@ -9,7 +9,7 @@ build() {
     export GENERATE_SOURCEMAP=false
 
     react-scripts build
-
+    mv build/static/js/main*.js build/static/js/main.js
     mkdir -p dist
     cp -r build/* dist
 
