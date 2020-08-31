@@ -12,7 +12,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://treacheryonline.web.app/*"],
+      "matches": ["https://netflix.com/watch/*"],
       "js": ["static/js/bundle.js"],
       "css": ["static/css/bundle.css"]
     }
