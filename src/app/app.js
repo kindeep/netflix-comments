@@ -8,11 +8,15 @@ import videoState from "./atoms/videoState";
 import displayState from "./atoms/displayState";
 import CommentIcon from "@material-ui/icons/Comment";
 import { waitForElm } from "../utils/misc";
+import { HOME, LOGIN } from "./atoms/routeState";
+import CustomRoute from "./components/routing/custom-route";
+
 export default function App() {
   const [, setVideo] = useRecoilState(videoState);
   const [display, setDisplay] = useRecoilState(displayState);
   const [hoverDisplay, setHoverDisplay] = useState(true);
   const attrObserver = useRef(null);
+
   useEffect(() => {
     attrObserver.current = new MutationObserver((mutations) => {
       mutations.forEach((mu) => {
@@ -78,8 +82,13 @@ export default function App() {
         >
           <div className="app-flex">
             <Nav></Nav>
-            <Comments></Comments>
-            <AddComment></AddComment>
+            <CustomRoute route={HOME}>
+              <Comments></Comments>
+              <AddComment></AddComment>
+            </CustomRoute>
+            <CustomRoute route={LOGIN}>
+              <div>Login yes</div>
+            </CustomRoute>
           </div>
         </div>
       )}

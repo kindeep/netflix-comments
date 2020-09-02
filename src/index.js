@@ -17,21 +17,9 @@ import purple from "@material-ui/core/colors/purple";
 import green from "@material-ui/core/colors/green";
 import { createMuiTheme, ThemeProvider, CssBaseline } from "@material-ui/core";
 import { waitForElm } from "./utils/misc";
+import { initFirebase } from "./firebaseApp";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyA9dW1g1hRTm_W7n8ByqmhwmM3GCf2tK9w",
-  authDomain: "netflix-comments.firebaseapp.com",
-  databaseURL: "https://netflix-comments.firebaseio.com",
-  projectId: "netflix-comments",
-  storageBucket: "netflix-comments.appspot.com",
-  messagingSenderId: "678514319671",
-  appId: "1:678514319671:web:010925e266749bde27fab2",
-  measurementId: "G-NVCQ63DKWH",
-};
-
-firebase.initializeApp(firebaseConfig);
-
-export const db = firebase.firestore();
+initFirebase();
 
 const theme = createMuiTheme({
   palette: {
@@ -65,10 +53,9 @@ const theme = createMuiTheme({
     </React.StrictMode>,
     commentsEl
   );
-
 })();
 
-  // If you want your app to work offline and load faster, you can change
-  // unregister() to register() below. Note this comes with some pitfalls.
-  // Learn more about service workers: https://bit.ly/CRA-PWA
-  serviceWorker.unregister();
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();

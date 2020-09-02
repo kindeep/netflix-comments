@@ -4,7 +4,6 @@ import { useRecoilState } from "recoil";
 import commentsState from "../atoms/commentsState";
 import Comment from "./comment";
 import videoState from "../atoms/videoState";
-import { db } from "../..";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -15,6 +14,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import "./comments.css";
 import { Box } from "@material-ui/core";
+import { db } from "../../firebaseApp";
 
 function Comments() {
   const [comments, setComments] = useRecoilState(commentsState);
