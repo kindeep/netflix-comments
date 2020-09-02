@@ -57,7 +57,7 @@ export default function App() {
 
   return (
     <>
-      {!display && hoverDisplay && (
+      {!display && (
         <div className={`invisible-wrapper ${hoverDisplay ? "active" : ""}`}>
           <IconButton
             edge="start"
@@ -65,8 +65,9 @@ export default function App() {
             aria-label="menu"
             onClick={show}
             className="show-button"
+            style={{ padding: 20 }}
           >
-            <CommentIcon />
+            <CommentIcon style={{ fontSize: 40 }} />
           </IconButton>
         </div>
       )}
