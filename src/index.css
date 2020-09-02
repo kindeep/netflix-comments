@@ -3,16 +3,17 @@
 }
 
 .sizing-wrapper {
-  right: 288px !important;
+  right: 288px;
 }
 
 #comments {
-  position: absolute;
+  position: fixed;
   width: 288px;
   right: 0;
   top: 0;
   bottom: 0;
   height: 100%;
+  z-index: 5;
 }
 
 .app-flex {
@@ -20,4 +21,28 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
+}
+
+.visible-wrapper,
+.invisible-wrapper {
+  height: 100%;
+}
+
+.invisible-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.show-button {
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.active .show-button {
+  opacity: 1;
+}
+
+.big-daddy {
+  height: 100%;
 }

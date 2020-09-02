@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Button, TextField } from "@material-ui/core";
 import "./add-comment.css";
 
 export default function AddComment() {
   const [comment, setComment] = useState("");
-  const [focused, setFocused] = useState(true);
+  const [focused, setFocused] = useState(false);
+  const field = useRef(null);
   const commentChange = (e) => {
     setComment(e.target.value);
   };
   return (
     <div className="add-comment-root">
       <TextField
+        innerRef={field}
         label="Add a public comment"
         variant="outlined"
         value={comment}
@@ -18,7 +20,9 @@ export default function AddComment() {
         onBlur={() => {
           setFocused(false);
         }}
-        onFocus={() => {
+        onFocus={(e) => {
+          e.stopPropagation();
+          delete field.current.querySelector('input').blur;
           setFocused(true);
         }}
         fullWidth

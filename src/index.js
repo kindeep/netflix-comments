@@ -16,6 +16,7 @@ import "firebase/firestore";
 import purple from "@material-ui/core/colors/purple";
 import green from "@material-ui/core/colors/green";
 import { createMuiTheme, ThemeProvider, CssBaseline } from "@material-ui/core";
+import { waitForElm } from "./utils/misc";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA9dW1g1hRTm_W7n8ByqmhwmM3GCf2tK9w",
@@ -32,26 +33,6 @@ firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
 
-function waitForElm(selector) {
-  return new Promise((resolve) => {
-    if (document.querySelector(selector)) {
-      return resolve(document.querySelector(selector));
-    }
-
-    const observer = new MutationObserver((mutations) => {
-      if (document.querySelector(selector)) {
-        resolve(document.querySelector(selector));
-        observer.disconnect();
-      }
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-  });
-}
-
 const theme = createMuiTheme({
   palette: {
     type: "dark",
@@ -64,7 +45,6 @@ const theme = createMuiTheme({
   const wrapper = await waitForElm(".nf-kb-nav-wrapper");
 
   const createCommentsEl = () => {
-    console.log(document.body);
     const el = document.createElement("div");
     el.id = COMMENTS_EL_ID;
     wrapper.appendChild(el);
@@ -74,7 +54,6 @@ const theme = createMuiTheme({
   let commentsEl =
     document.getElementById(COMMENTS_EL_ID) ?? createCommentsEl();
 
-  console.log("Ahh plz dont get called more than once");
   ReactDOM.render(
     <React.StrictMode>
       <RecoilRoot>

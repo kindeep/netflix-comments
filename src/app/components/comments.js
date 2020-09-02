@@ -13,12 +13,12 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
-import './comments.css';
+import "./comments.css";
 import { Box } from "@material-ui/core";
 
 function Comments() {
   const [comments, setComments] = useRecoilState(commentsState);
-  const [video, setVideo] = useRecoilState(videoState);
+  const [video] = useRecoilState(videoState);
 
   useEffect(() => {
     db.collection(`videos/${video.key}/comments`).onSnapshot(
@@ -42,16 +42,14 @@ function Comments() {
   }, [setComments, video]);
 
   return (
-    <Box className="comments-root">
-      <List>
-        {comments.map((comment) => (
-          <div key={comment.key}>
-            <Comment comment={comment} key={comment.key}></Comment>
-            <Divider variant="inset" component="li" />
-          </div>
-        ))}
-      </List>
-    </Box>
+    <List className="comments-list">
+      {comments.map((comment) => (
+        <div key={comment.key}>
+          <Comment comment={comment} key={comment.key}></Comment>
+          <Divider variant="inset" component="li" />
+        </div>
+      ))}
+    </List>
   );
 }
 
