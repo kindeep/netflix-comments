@@ -3,12 +3,12 @@
 }
 
 .sizing-wrapper {
-  right: 288px;
+  right: 340px;
 }
 
 #comments {
   position: fixed;
-  width: 288px;
+  width: 340px;
   right: 0;
   top: 0;
   bottom: 0;

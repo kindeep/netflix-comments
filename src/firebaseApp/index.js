@@ -122,6 +122,20 @@ export async function googleSignIn() {
 }
 
 export async function signOut() {
-  console.log('wut');
+  console.log("wut");
   return await firebaseApp.auth().signOut();
+}
+
+export async function addComment(text, videoId, uid) {
+  console.log(`videos/${videoId}/comments`);
+  console.log({
+    created: firebase.firestore.FieldValue.serverTimestamp(),
+    text,
+    user: db.doc(`users/${uid}`),
+  });
+  db.collection(`videos/${videoId}/comments`).add({
+    created: firebase.firestore.FieldValue.serverTimestamp(),
+    text,
+    user: db.doc(`users/${uid}`),
+  });
 }

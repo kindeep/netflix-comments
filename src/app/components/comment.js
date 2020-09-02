@@ -7,6 +7,7 @@ import {
   Typography,
   makeStyles,
 } from "@material-ui/core";
+import ms from "ms";
 
 
 export default function Comment({ comment }) {
@@ -14,12 +15,12 @@ export default function Comment({ comment }) {
     <>
       <ListItem alignItems="flex-start" className="comments-list">
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          <Avatar alt={comment.user.displayName} src={comment.user.photoURL} />
         </ListItemAvatar>
         <div>
           <ListItemText disableTypography>
             <Typography variant="caption" gutterBottom>
-              {comment.user.name}
+              {comment.user.displayName}{comment.created && ` - ${ms(new Date() - comment.created.toDate(), {long: true})} ago`}
             </Typography>
             <Typography variant="body1" gutterBottom>
               {comment.text}

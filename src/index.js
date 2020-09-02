@@ -18,12 +18,19 @@ import green from "@material-ui/core/colors/green";
 import { createMuiTheme, ThemeProvider, CssBaseline } from "@material-ui/core";
 import { waitForElm } from "./utils/misc";
 import { initFirebase } from "./firebaseApp";
+import { red, grey } from '@material-ui/core/colors';
 
 initFirebase();
 
 const theme = createMuiTheme({
   palette: {
     type: "dark",
+    primary: {
+      main: red[300]
+    },
+    secondary: {
+      main: grey[100]
+    }
   },
 });
 

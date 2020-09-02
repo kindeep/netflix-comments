@@ -49,7 +49,7 @@ export default function App() {
   const show = useCallback(() => {
     const netflix = document.querySelector(".sizing-wrapper");
     if (netflix) {
-      netflix.style.right = "288px";
+      netflix.style.right = "340px";
     }
     setDisplay(true);
   }, [setDisplay]);

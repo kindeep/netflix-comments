@@ -42,14 +42,16 @@ function Comments() {
   }, [setComments, video]);
 
   return (
-    <List className="comments-list">
-      {comments.map((comment) => (
-        <div key={comment.key}>
-          <Comment comment={comment} key={comment.key}></Comment>
-          <Divider variant="inset" component="li" />
-        </div>
-      ))}
-    </List>
+    <div className="comments-list-wrapper">
+      <List>
+        {comments.map((comment) => (
+          <div key={comment.key}>
+            <Comment comment={comment} key={comment.key}></Comment>
+            <Divider variant="inset" component="li" />
+          </div>
+        ))}
+      </List>
+    </div>
   );
 }
 

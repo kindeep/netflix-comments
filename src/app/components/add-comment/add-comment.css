@@ -1,7 +1,7 @@
 .add-comment-actions {
   display: flex;
   justify-content: flex-end;
-  padding: 8px;
+  padding: 0 8px 8px 8px;
 }
 
 .add-comment-actions .cancel-button {
@@ -9,5 +9,9 @@
 }
 
 .add-comment-root {
-  padding: 8px;
+  padding-top: 8px;
+}
+
+.add-comment-input-wrapper {
+  padding: 0 8px 8px 8px;
 }
