@@ -8,8 +8,12 @@ import videoState from "./atoms/videoState";
 import displayState from "./atoms/displayState";
 import CommentIcon from "@material-ui/icons/Comment";
 import { waitForElm } from "../utils/misc";
-import { HOME, LOGIN } from "./atoms/routeState";
+import routeState, { HOME, LOGIN, PROFILE } from "./atoms/routeState";
 import CustomRoute from "./components/routing/custom-route";
+import Login from "./components/login/login";
+import { firebaseApp, db } from "../firebaseApp";
+import authState from "./atoms/authState";
+import Profile from "./components/profile/profile";
 
 export default function App() {
   const [, setVideo] = useRecoilState(videoState);
@@ -59,6 +63,26 @@ export default function App() {
     show();
   }, [setVideo, show]);
 
+  const [route, setRoute] = useRecoilState(routeState);
+  const [auth, setAuth] = useRecoilState(authState);
+
+  useEffect(() => {
+    firebaseApp.auth().onAuthStateChanged(function (user) {
+      console.log("Auth state changed", user);
+      if (user) {
+        // User is signed in.
+        setAuth({ uid: user.uid });
+        db.doc(`users/${user.uid}`).onSnapshot((doc) => {
+          setAuth((prevAuth) => ({ ...prevAuth, user: doc.data() }));
+        });
+      } else {
+        console.log("null yes");
+        // No user is signed in.
+        setAuth({ uid: null, user: null });
+      }
+    });
+  }, [setAuth]);
+
   return (
     <>
       {!display && (
@@ -87,7 +111,10 @@ export default function App() {
               <AddComment></AddComment>
             </CustomRoute>
             <CustomRoute route={LOGIN}>
-              <div>Login yes</div>
+              <Login></Login>
+            </CustomRoute>
+            <CustomRoute route={PROFILE}>
+              <Profile></Profile>
             </CustomRoute>
           </div>
         </div>

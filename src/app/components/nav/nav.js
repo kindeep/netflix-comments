@@ -10,8 +10,10 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { useRecoilState } from "recoil";
 import displayState from "../../atoms/displayState";
 import AppLink from "../routing/app-link";
-import { LOGIN, HOME } from "../../atoms/routeState";
+import routeState, { LOGIN, HOME, PROFILE } from "../../atoms/routeState";
 import AppRouteObserver from "../routing/app-route-observer";
+import authState from "../../atoms/authState";
+import { Avatar } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -26,6 +28,8 @@ export default function Nav() {
   const classes = useStyles();
 
   const [display, setDisplay] = useRecoilState(displayState);
+  const [route, ] = useRecoilState(routeState);
+  const [auth, setAuth] = useRecoilState(authState);
 
   const hide = () => {
     const netflix = document.querySelector(".sizing-wrapper");
@@ -51,9 +55,23 @@ export default function Nav() {
           <Typography variant="h6" className={classes.title}>
             Comments
           </Typography>
-          <AppLink color="inherit" component={Button} to={LOGIN}>
-            Login
-          </AppLink>
+          {!auth.user && (
+            <AppLink color="inherit" component={Button} to={LOGIN}>
+              Login
+            </AppLink>
+          )}
+          {auth.user && (
+            <AppLink
+              component={IconButton}
+              color="inherit"
+              aria-label="profile"
+              onClick={hide}
+              style={{ marginRight: -12 }}
+              to={PROFILE}
+            >
+              <Avatar src={auth.user.photoURL}></Avatar>
+            </AppLink>
+          )}
         </Toolbar>
       </AppBar>
       <AppRouteObserver>
@@ -76,8 +94,8 @@ export default function Nav() {
                 >
                   <ArrowBackIcon />
                 </AppLink>
-                <Typography variant="subtitle" className={classes.title}>
-                  Login
+                <Typography variant="subtitle1" className={classes.title}>
+                  {route.title}
                 </Typography>
               </Toolbar>
             </AppBar>
