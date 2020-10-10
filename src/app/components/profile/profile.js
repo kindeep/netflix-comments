@@ -10,6 +10,7 @@ export default function Profile() {
   const [route, setRoute] = useRecoilState(routeState);
 
   useEffect(() => {
+    console.log("why");
     if (!auth.uid) {
       setRoute(HOME);
     }

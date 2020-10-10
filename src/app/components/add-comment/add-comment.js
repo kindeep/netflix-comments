@@ -30,8 +30,9 @@ export default function AddComment() {
     <div className="add-comment-root">
       <div className="add-comment-input-wrapper">
         <TextField
+          disabled={!auth.uid}
           innerRef={field}
-          label="Add a public comment"
+          label={auth.uid ? "Add a public comment" : "Login to comment"}
           variant="outlined"
           value={comment}
           onChange={commentChange}
@@ -46,7 +47,7 @@ export default function AddComment() {
           fullWidth
         />
       </div>
-      {(focused || validateComment(comment)) && (
+      {(auth.uid && (focused || validateComment(comment))) && (
         <div className="add-comment-actions">
           <Button
             color="secondary"

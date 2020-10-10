@@ -8,12 +8,13 @@ import videoState from "./atoms/videoState";
 import displayState from "./atoms/displayState";
 import CommentIcon from "@material-ui/icons/Comment";
 import { waitForElm } from "../utils/misc";
-import routeState, { HOME, LOGIN, PROFILE } from "./atoms/routeState";
+import routeState, { HOME, LOGIN, PROFILE, SIGNUP } from "./atoms/routeState";
 import CustomRoute from "./components/routing/custom-route";
-import Login from "./components/login/login";
+import Login from "./components/pages/login/login";
 import { firebaseApp, db } from "../firebaseApp";
 import authState from "./atoms/authState";
 import Profile from "./components/profile/profile";
+import SignUp from "./components/pages/signup/signup";
 
 export default function App() {
   const [, setVideo] = useRecoilState(videoState);
@@ -115,6 +116,9 @@ export default function App() {
             </CustomRoute>
             <CustomRoute route={PROFILE}>
               <Profile></Profile>
+            </CustomRoute>
+            <CustomRoute route={SIGNUP}>
+              <SignUp></SignUp>
             </CustomRoute>
           </div>
         </div>

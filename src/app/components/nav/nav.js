@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import HomeIcon from "@material-ui/icons/Home";
 import { useRecoilState } from "recoil";
 import displayState from "../../atoms/displayState";
 import AppLink from "../routing/app-link";
@@ -80,9 +80,9 @@ export default function Nav() {
             <AppBar
               color="inherit"
               position="static"
-              style={{ minHeight: 35, height: 35 }}
+              style={{ minHeight: 45, height: 45 }}
             >
-              <Toolbar style={{ minHeight: 35, height: 35 }}>
+              <Toolbar style={{ minHeight: 45, height: 45 }}>
                 <AppLink
                   component={IconButton}
                   edge="start"
@@ -92,7 +92,7 @@ export default function Nav() {
                   to={HOME}
                   style={{ fontSize: 20 }}
                 >
-                  <ArrowBackIcon />
+                  <HomeIcon />
                 </AppLink>
                 <Typography variant="subtitle1" className={classes.title}>
                   {route.title}

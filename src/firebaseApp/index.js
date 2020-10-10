@@ -78,7 +78,7 @@ export function authUserToAppUser(user) {
   };
 }
 
-function signIn(provider) {
+function signInWithProvider(provider) {
   return new Promise((resolve, reject) => {
     firebase
       .auth()
@@ -117,12 +117,23 @@ function signIn(provider) {
   });
 }
 
-export async function googleSignIn() {
-  return await signIn(googleAuthProvider);
+// export async function googleSignIn() {
+//   return await signIn(googleAuthProvider);
+// }
+
+export async function signIn(email, password) {
+  return await firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password);
+}
+
+export async function signUp(email, password) {
+  return await firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password);
 }
 
 export async function signOut() {
-  console.log("wut");
   return await firebaseApp.auth().signOut();
 }
 
